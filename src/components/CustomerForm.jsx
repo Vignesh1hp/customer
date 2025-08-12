@@ -2,15 +2,19 @@ import React from "react";
 import "./CustomerForm.css";
 import { useFormik } from "formik";
 import { validateSchema } from "../schemas";
+import { useNavigate } from "react-router-dom";
 
-const onSubmit = async (values, actions) => {
-  // console.log("submitted");
-  console.log(values);
+const onSubmit = async (values, actions,navigate) => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  // Send form data to AddCustomer page
+  navigate("/add-customer", { state: { customer: values } });
+
   actions.resetForm();
 };
 
 const CustomerForm = () => {
+  const navigate = useNavigate();
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
@@ -29,7 +33,7 @@ const CustomerForm = () => {
         gst: "",
       },
       validationSchema: validateSchema,
-      onSubmit,
+      onSubmit:(values, actions) => onSubmit(values, actions, navigate),
     });
 
   console.log(errors);
