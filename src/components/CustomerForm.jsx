@@ -4,13 +4,11 @@ import { useFormik } from "formik";
 import { validateSchema } from "../schemas";
 import { useNavigate } from "react-router-dom";
 
-const onSubmit = async (values, actions,navigate) => {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
-
-  // Send form data to AddCustomer page
-  navigate("/add-customer", { state: { customer: values } });
-
-  actions.resetForm();
+const onSubmit = async (values, actions, navigate) => {
+  const storedCustomers = JSON.parse(localStorage.getItem("customers")) || [];
+  const updatedCustomers = [...storedCustomers, values];
+  localStorage.setItem("customers", JSON.stringify(updatedCustomers));
+  navigate("/");
 };
 
 const CustomerForm = () => {
@@ -33,7 +31,7 @@ const CustomerForm = () => {
         gst: "",
       },
       validationSchema: validateSchema,
-      onSubmit:(values, actions) => onSubmit(values, actions, navigate),
+      onSubmit: (values, actions) => onSubmit(values, actions, navigate),
     });
 
   console.log(errors);

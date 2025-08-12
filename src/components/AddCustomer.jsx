@@ -1,12 +1,12 @@
 import React from "react";
 import "./AddCustomer.css";
 import { MdAddCircleOutline } from "react-icons/md";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AddCustomer = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const customer = location.state?.customer;
+  const customers = JSON.parse(localStorage.getItem("customers")) || [];
+
   const handleButtonClick = () => {
     navigate("/customerform");
   };
@@ -40,16 +40,18 @@ const AddCustomer = () => {
           </tr>
         </thead>
         <tbody>
-          {customer ? (
-            <tr>
-              <td>{customer.name}</td>
-              <td>{customer.type}</td>
-              <td>{customer.email}</td>
-              <td>{customer.phone}</td>
-            </tr>
+          {customers.length > 0 ? (
+            customers.map((customer, index) => (
+              <tr key={index}>
+                <td>{customer.name}</td>
+                <td>{customer.type}</td>
+                <td>{customer.email}</td>
+                <td>{customer.phone}</td>
+              </tr>
+            ))
           ) : (
             <tr>
-              <td colSpan="3">No customers yet</td>
+              <td colSpan="4">No customers yet</td>
             </tr>
           )}
         </tbody>
