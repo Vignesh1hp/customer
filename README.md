@@ -3,3 +3,4 @@
 - Created navigation using react-router-dom
 - simple css applied
 - installed formik and imported it.
+- created CustomerForm and con

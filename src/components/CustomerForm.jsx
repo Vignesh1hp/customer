@@ -1,29 +1,38 @@
 import React from "react";
 import "./CustomerForm.css";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import { validateSchema } from "../schemas";
+
+const onSubmit = async (values, actions) => {
+  // console.log("submitted");
+  console.log(values);
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+  actions.resetForm();
+};
 
 const CustomerForm = () => {
-  const {values,handleBlur,handleChange,handleSubmit} = useFormik({
-    initialValues: {
-      type: "",
-      name: "",
-      phone: "",
-      email: "",
-      sort: "",
-      type1: "",
-      add1: "",
-      add2:"",
-      city: "",
-      state:"",
-      country:"",
-      postal:"",
-      gst:""
-    },
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-    },
-  });
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        type: "",
+        name: "",
+        phone: "",
+        email: "",
+        sort: "",
+        type1: "",
+        add1: "",
+        add2: "",
+        city: "",
+        state: "",
+        country: "",
+        postal: "",
+        gst: "",
+      },
+      validationSchema: validateSchema,
+      onSubmit,
+    });
+
+  console.log(errors);
 
   // console.log(formik);
 
@@ -57,7 +66,11 @@ const CustomerForm = () => {
                   value={values.name}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  className={errors.name ? "input-error" : ""}
                 />
+                {errors.name && touched.name && (
+                  <p className="error">{errors.name}</p>
+                )}
               </div>
             </div>
             <div className="sections">
@@ -69,7 +82,11 @@ const CustomerForm = () => {
                   value={values.phone}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  className={errors.phone ? "input-error" : ""}
                 />
+                {errors.phone && touched.phone && (
+                  <p className="error">{errors.phone}</p>
+                )}
               </div>
 
               <div className="fields">
@@ -80,7 +97,11 @@ const CustomerForm = () => {
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  className={errors.email ? "input-error" : ""}
                 />
+                {errors.email && touched.email && (
+                  <p className="error">{errors.email}</p>
+                )}
               </div>
             </div>
 
@@ -89,7 +110,7 @@ const CustomerForm = () => {
                 <label htmlFor="sort">Sort Order</label>
                 <input
                   id="sort"
-                  type="text"
+                  type="number"
                   value={values.sort}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -124,7 +145,11 @@ const CustomerForm = () => {
                     value={values.add1}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    className={errors.add1 ? "input-error" : ""}
                   />
+                  {errors.add1 && touched.add1 && (
+                    <p className="error">{errors.add1}</p>
+                  )}
                 </div>
               </div>
 
@@ -137,7 +162,11 @@ const CustomerForm = () => {
                     value={values.add2}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    className={errors.add2 ? "input-error" : ""}
                   />
+                  {errors.add2 && touched.add2 && (
+                    <p className="error">{errors.add2}</p>
+                  )}
                 </div>
                 <div className="fields">
                   <label htmlFor="city">City</label>
@@ -147,12 +176,15 @@ const CustomerForm = () => {
                     value={values.city}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    className={errors.city ? "input-error" : ""}
                   />
+                  {errors.city && touched.city && (
+                    <p className="error">{errors.city}</p>
+                  )}
                 </div>
               </div>
 
               <div className="sections">
-               
                 <div className="fields">
                   <label htmlFor="state">State</label>
                   <select
@@ -177,7 +209,11 @@ const CustomerForm = () => {
                     value={values.country}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    className={errors.country ? "input-error" : ""}
                   />
+                  {errors.country && touched.country && (
+                    <p className="error">{errors.country}</p>
+                  )}
                 </div>
               </div>
 
@@ -190,7 +226,11 @@ const CustomerForm = () => {
                     value={values.postal}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    className={errors.postal ? "input-error" : ""}
                   />
+                  {errors.postal && touched.postal && (
+                    <p className="error">{errors.postal}</p>
+                  )}
                 </div>
                 <div className="fields">
                   <label htmlFor="gst">GST No.</label>
@@ -200,13 +240,16 @@ const CustomerForm = () => {
                     value={values.gst}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    className={errors.gst ? "input-error" : ""}
                   />
+                  {errors.gst && touched.gst && (
+                    <p className="error">{errors.gst}</p>
+                  )}
                 </div>
               </div>
             </div>
             <button type="submit">Create Customer</button>
           </div>
-          
         </form>
       </div>
     </>
