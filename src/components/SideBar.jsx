@@ -33,7 +33,7 @@ const SideBar = () => {
         {/* Customers */}
         <li className="mb-2 rounded hover:shadow">
           <NavLink
-            to="/customerform"
+            to="/customers"
             className={({ isActive }) =>
               `flex items-center w-full py-4 px-3 ${
                 isActive

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-// import "./AddCustomer.css";
 import { MdAddCircleOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import { data } from "../assets/data";
 import DataTable from "react-data-table-component";
+import SideBar from "./SideBar";
+import Navbar from "./Navbar";
 // const AddCustomer = () => {
 //   const navigate = useNavigate();
 //   const customers = JSON.parse(localStorage.getItem("customers")) || [];
@@ -102,41 +103,43 @@ const AddCustomer = () => {
     setRecords(newrecords);
   };
   const handleButtonClick = () => {
-    navigate("/customerform");
+    navigate("/customer/create");
   };
   return (
-    <div className="mt-7 rounded shadow-2xl pt-10 pl-6">
-      <div className="flex justify-between p-2">
-        <h2 className="text-[1.25rem]">Customers</h2>
-        <div>
+    <>
+      <div className="mt-7 rounded shadow-2xl pt-10 pl-6">
+        <div className="flex justify-between p-2">
+          <h2 className="text-[1.25rem]">Customers</h2>
           <div>
-            <button
-              onClick={handleButtonClick}
-              className="h-10 bg-[#006666] text-white flex justify-center items-center px-6 py-4 rounded-lg"
-            >
-              <MdAddCircleOutline size={20} />
-              <span className="text-[0.90rem] font-semibold ml-2">
-                Add New Customer
-              </span>
-            </button>
+            <div>
+              <button
+                onClick={handleButtonClick}
+                className="h-10 bg-[#006666] text-white flex justify-center items-center px-6 py-4 rounded-lg"
+              >
+                <MdAddCircleOutline size={20} />
+                <span className="text-[0.90rem] font-semibold ml-2">
+                  Add New Customer
+                </span>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="flex justify-end mb-4 mt-2 p-2">
-        <input
-          type="text"
-          className="border border-gray-300 rounded-sm p-2 focus:border-blue-600 focus:ring-0 focus:outline-none"
-          placeholder="Search..."
-          onChange={handleChange}
+        <div className="flex justify-end mb-4 mt-2 p-2">
+          <input
+            type="text"
+            className="border border-gray-300 rounded-sm p-2 focus:border-blue-600 focus:ring-0 focus:outline-none"
+            placeholder="Search..."
+            onChange={handleChange}
+          />
+        </div>
+        <DataTable
+          columns={columns}
+          data={records}
+          customStyles={customStyles}
+          pagination
         />
       </div>
-      <DataTable
-        columns={columns}
-        data={records}
-        customStyles={customStyles}
-        pagination
-      />
-    </div>
+    </>
   );
 };
 export default AddCustomer;

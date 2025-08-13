@@ -25,9 +25,11 @@ export const validateSchema = Yup.object().shape({
   city: Yup.string().required("City is required for each address."),
 
   state: Yup.string().required("Select State"),
-  country:Yup.string().required("Country is required for each address"),
+  country: Yup.string().required("Country is required for each address"),
 
-  postal: Yup.string().required("Postal code is required for each address."),
+  postal: Yup.number()
+    .positive()
+    .required("Postal code is required for each address."),
 
   gst: Yup.string().required("GST number is required for each address."),
 });

@@ -10,7 +10,8 @@ const Layout = () => {
         <SideBar />
         <Navbar />
         <main className="ml-80 mr-30 mt-16 w-full">
-          <Outlet /> {/* dynamic components render area */}
+          <Outlet />
+          {/* dynamic components render area */}
         </main>
       </div>
     </div>
