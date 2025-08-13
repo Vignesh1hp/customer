@@ -9,8 +9,8 @@ const Layout = () => {
       <div className="flex font-[Figtree]">
         <SideBar />
         <Navbar />
-        <main className="ml-80 mt-16">
-          <Outlet /> {/* Where child pages will render */}
+        <main className="ml-70 mr-40 mt-16 w-full">
+          <Outlet /> {/* dynamic components render area */}
         </main>
       </div>
     </div>

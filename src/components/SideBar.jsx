@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const SideBar = () => {
   return (
-    <div className="w-64 fixed h-full shadow-md">
+    <div className="w-64 fixed h-full shadow-lg">
       <div className="flex h-18 justify-center items-center">
         <img src="./img.jpg" alt="Logo" />
       </div>
