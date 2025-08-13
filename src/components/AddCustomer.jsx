@@ -105,24 +105,27 @@ const AddCustomer = () => {
     navigate("/customerform");
   };
   return (
-    <div className="mt-10 w-400 shadow-lg rounded p-15">
-      <div className="flex justify-between">
+    <div className="mt-7 rounded shadow-2xl pt-10 pl-6">
+      <div className="flex justify-between p-2">
         <h2 className="text-[1.25rem]">Customers</h2>
         <div>
           <div>
-            <button onClick={handleButtonClick} className="border-r-8 h-10">
+            <button
+              onClick={handleButtonClick}
+              className="h-10 bg-[#006666] text-white flex justify-center items-center px-6 py-4 rounded-lg"
+            >
               <MdAddCircleOutline size={20} />
-              <span className="text-[0.90rem] font-semibold">
+              <span className="text-[0.90rem] font-semibold ml-2">
                 Add New Customer
               </span>
             </button>
           </div>
         </div>
       </div>
-      <div className="flex justify-end mb-4 mt-2">
+      <div className="flex justify-end mb-4 mt-2 p-2">
         <input
           type="text"
-          className="border border-gray-300 "
+          className="border border-gray-300 rounded-sm p-2 focus:border-blue-600 focus:ring-0 focus:outline-none"
           placeholder="Search..."
           onChange={handleChange}
         />

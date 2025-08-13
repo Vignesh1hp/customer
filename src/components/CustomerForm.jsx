@@ -1,5 +1,5 @@
 import React from "react";
-import "./CustomerForm.css";
+// import "./CustomerForm.css";
 import { useFormik } from "formik";
 import { validateSchema } from "../schemas";
 import { useNavigate } from "react-router-dom";
@@ -40,8 +40,8 @@ const CustomerForm = () => {
 
   return (
     <>
-      <div className="form-wrapper">
-        <h2>Add New Customer</h2>
+      <div className="shadow-lg rounded p-15">
+        <h1 className="font-bold text-lg mb-3">Add New Customer</h1>
         <form onSubmit={handleSubmit}>
           <div className="section-wrapper">
             <div className="sections">
@@ -122,7 +122,7 @@ const CustomerForm = () => {
             <div className="address">
               <h3>Address 1</h3>
               <div className="sections">
-                {/* <div className="sections"> */}
+                
                 <div className="fields">
                   <label htmlFor="type1">Type:</label>
                   <select
