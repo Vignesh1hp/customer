@@ -5,16 +5,17 @@ import CustomerForm from "./components/CustomerForm";
 import SideBar from "./components/SideBar";
 import Layout from "./components/Layout";
 import Dashboard from "./components/Dashboard";
+import ViewCustomer from "./components/ViewCustomer";
 function App() {
   return (
     <>
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
-            {/* Default page: AddCustomer */}
             <Route index element={<Dashboard />} />
             <Route path="customers" element={<AddCustomer />} />
-            <Route path="customer/create" element={<CustomerForm/>} />
+            <Route path="customer/create" element={<CustomerForm />} />
+            <Route path="customer/view/:id" element={<ViewCustomer />} />
           </Route>
         </Routes>
       </Router>

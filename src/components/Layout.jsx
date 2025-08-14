@@ -7,6 +7,7 @@ const Layout = () => {
   return (
     <div>
       <div className="flex font-[Figtree]">
+        {/* fixed sidebar and navbar */}
         <SideBar />
         <Navbar />
         <main className="ml-80 mr-30 mt-16 w-full">

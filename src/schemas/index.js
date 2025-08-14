@@ -1,35 +1,52 @@
 import * as Yup from "yup";
 
 export const validateSchema = Yup.object().shape({
-  type: Yup.string().required("select type"),
+  type: Yup.string()
+    .oneOf(["person", "company"], "Invalid customer type")
+    .required("Please select customer type."),
+
   name: Yup.string()
-    .min(3, "Name must be at least 3 characters")
-    .required("The customer name is required."),
+    .trim()
+    .min(3, "Name must be at least 3 characters.")
+    .max(50, "Name must be at most 50 characters.")
+    .required("Customer name is required."),
 
   phone: Yup.string()
-    .min(10, "Phone Number must be equal to 10")
-    .required("The phone is required."),
+    .matches(/^[0-9]{10}$/, "Phone number must be exactly 10 digits.")
+    .required("Phone number is required."),
 
   email: Yup.string()
-    .email("Invalid email format")
-    .required("Email is required"),
+    .email("Please enter a valid email address.")
+    .required("Email is required."),
 
-  sort: Yup.number().positive().integer().required("Sort order is required"),
+  sort: Yup.number()
+    .typeError("Sort order must be a number.")
+    .positive("Sort order must be positive.")
+    .integer("Sort order must be an integer.")
+    .nullable(),
 
-  type1: Yup.string().required("Select type"),
+  type1: Yup.string()
+    .oneOf(["billing-delivery", "billing", "delivery"], "Invalid address type")
+    .required("Please select address type."),
 
-  add1: Yup.string().required("Address Line 1 is required for each address."),
+  add1: Yup.string().trim().required("Address Line 1 is required."),
 
-  add2: Yup.string().required("Address Line 2 is required for each address."),
+  add2: Yup.string().trim(),
 
-  city: Yup.string().required("City is required for each address."),
+  city: Yup.string().trim().required("City is required."),
 
-  state: Yup.string().required("Select State"),
-  country: Yup.string().required("Country is required for each address"),
+  state: Yup.string().trim().required("Please select a state."),
 
-  postal: Yup.number()
-    .positive()
-    .required("Postal code is required for each address."),
+  country: Yup.string().trim().required("Country is required."),
 
-  gst: Yup.string().required("GST number is required for each address."),
+  postal: Yup.string()
+    .matches(/^[0-9]{6}$/, "Postal code must be exactly 6 digits.")
+    .required("Postal code is required."),
+
+  gst: Yup.string()
+    .matches(
+      /^[0-9A-Z]{15}$/,
+      "GST number must be exactly 15 characters (A-Z, 0-9)."
+    )
+    .required("GST number is required."),
 });
